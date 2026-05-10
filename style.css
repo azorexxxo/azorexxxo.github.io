@@ -70,6 +70,103 @@ h1 {
     font-size: clamp(2rem, 4vw, 4rem);
     font-weight: 800;
 }
+.readme-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 18px;
+    padding: 10px 16px;
+    border: 1px solid rgba(244, 197, 66, 0.38);
+    border-radius: 6px;
+    color: var(--gold-500);
+    background: rgba(244, 197, 66, 0.08);
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+.readme-link:hover {
+    transform: translateY(-1px);
+    background: rgba(244, 197, 66, 0.14);
+    box-shadow: 0 10px 24px rgba(244, 197, 66, 0.16);
+}
+.doc-hero {
+    padding-bottom: 34px;
+}
+.doc-lead {
+    max-width: 780px;
+    margin: 16px 0 0;
+    color: #d7e4ee;
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+.doc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.doc-layout {
+    width: min(1080px, calc(100% - 32px));
+    margin: 28px auto 48px;
+    display: grid;
+    gap: 18px;
+}
+.doc-panel {
+    position: relative;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+}
+.doc-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    border-top: 2px solid rgba(244, 197, 66, 0.28);
+}
+.doc-panel p {
+    margin: 0 0 12px;
+    color: #d7e4ee;
+    line-height: 1.55;
+}
+.doc-panel p:last-child {
+    margin-bottom: 0;
+}
+.doc-steps,
+.doc-list {
+    margin: 0;
+    padding-left: 22px;
+    color: #d7e4ee;
+    line-height: 1.6;
+}
+.doc-steps li,
+.doc-list li {
+    margin: 7px 0;
+}
+.doc-list a {
+    color: var(--gold-500);
+    font-weight: 800;
+    text-decoration: none;
+}
+.doc-list a:hover {
+    text-decoration: underline;
+}
+.doc-panel pre {
+    margin: 10px 0 14px;
+    overflow-x: auto;
+    padding: 12px;
+    border: 1px solid rgba(142, 202, 230, 0.18);
+    border-radius: 6px;
+    background: rgba(3, 11, 20, 0.62);
+}
+.doc-panel pre code {
+    padding: 0;
+    background: transparent;
+    color: var(--paper);
+    white-space: pre;
+}
 h2 {
     margin-bottom: 18px;
     color: #ffffff;

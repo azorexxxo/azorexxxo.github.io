@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrukcja aplikacji astronawigacyjnej</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header doc-hero">
+    <div>
+        <p class="eyebrow">Instrukcja użytkowania</p>
+        <h1>Aplikacja astronawigacyjna</h1>
+        <p class="doc-lead">Krótka instrukcja uruchomienia, korzystania z almanachu oraz generowania danych offline.</p>
+        <div class="doc-actions">
+            <a class="readme-link" href="index.html">Wróć do aplikacji</a>
+        </div>
+    </div>
+</header>
+
+<main class="doc-layout">
+    <section class="doc-panel">
+        <h2>Jak uruchomić aplikację</h2>
+        <p>Najprościej otworzyć plik <code>index.html</code>. Jeżeli aplikacja jest opublikowana przez GitHub Pages, wystarczy wejść w link strony.</p>
+        <p>Aplikacja ładuje gotowy plik <code>data/almanac-data.js</code>, dlatego po wygenerowaniu almanachu może działać także bez internetu.</p>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Jak wykonać obliczenie pozycji</h2>
+        <ol class="doc-steps">
+            <li>Wpisz pozycję przybliżoną DR.</li>
+            <li>Uzupełnij wysokość oka, temperaturę, ciśnienie i błąd indeksu.</li>
+            <li>Wybierz ciało niebieskie.</li>
+            <li>Ustaw datę i czas UTC obserwacji.</li>
+            <li>Kliknij <code>Wypełnij z almanachu</code>, aby uzupełnić GHA, deklinację, SHA, SD i HP.</li>
+            <li>Wpisz wysokość sekstantową Hs.</li>
+            <li>Kliknij <code>Dodaj obserwację</code>.</li>
+            <li>Dodaj minimum dwie obserwacje.</li>
+            <li>Kliknij <code>Oblicz pozycję</code>.</li>
+        </ol>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Almanach offline</h2>
+        <p>Do normalnego używania aplikacji nie trzeba uruchamiać Pythona. Program korzysta z gotowego pliku:</p>
+        <pre><code>data/almanac-data.js</code></pre>
+        <p>Ten plik zawiera dane almanachu na lata 2024-2030. Jeżeli znajduje się w repozytorium, aplikacja może działać także z GitHub Pages.</p>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Generator almanachu</h2>
+        <p>Generator uruchamia się ręcznie tylko wtedy, gdy trzeba przebudować dane almanachu, np. zmienić zakres lat albo pobrać dane od nowa.</p>
+        <p>Komenda do wygenerowania almanachu 2024-2030:</p>
+        <pre><code>cd /Users/azarkodawid/Desktop/aplikacja
+python3 tools/generate-almanac.py --start-year 2024 --end-year 2030</code></pre>
+        <p>Komenda wymuszająca pobranie danych od nowa:</p>
+        <pre><code>python3 tools/generate-almanac.py --start-year 2024 --end-year 2030 --force-download</code></pre>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Źródła danych</h2>
+        <ul class="doc-list">
+            <li><a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">NASA/JPL Horizons API</a></li>
+            <li><a href="https://ssd.jpl.nasa.gov/api/horizons.api">Endpoint Horizons</a></li>
+            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/version_cd/cats/hip_main.dat.gz">Hipparcos Main Catalogue</a></li>
+            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe">Opis pól katalogu Hipparcos</a></li>
+        </ul>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Zakres danych</h2>
+        <ul class="doc-list">
+            <li>Słońce, Księżyc, Wenus, Mars, Jowisz i Saturn z NASA/JPL Horizons.</li>
+            <li>57 gwiazd nawigacyjnych z katalogu Hipparcos.</li>
+            <li>Dane godzinowe dla ciał Układu Słonecznego od <code>2024-01-01 00:00:00</code> do <code>2031-01-01 00:00:00</code>.</li>
+            <li>Dane dzienne dla gwiazd, SD i HP od <code>2024-01-01</code> do <code>2030-12-31</code>.</li>
+        </ul>
+        <p>Dodatkowy punkt <code>2031-01-01 00:00:00</code> jest potrzebny do interpolacji obserwacji wykonanych pod koniec 2030 roku.</p>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Przeliczenia w generatorze</h2>
+        <p>Skrypt pobiera z Horizons rektascensję, deklinację, średnicę kątową i odległość, a następnie przelicza dane do formatu używanego przez aplikację:</p>
+        <pre><code>GHA = GAST - RA
+SHA = 360° - RA
+HP = asin(R_ziemi / odległość)
+SD = średnica kątowa / 2</code></pre>
+    </section>
+
+    <section class="doc-panel">
+        <h2>Najważniejsze pliki</h2>
+        <ul class="doc-list">
+            <li><code>index.html</code> - struktura aplikacji.</li>
+            <li><code>style.css</code> - wygląd aplikacji i instrukcji.</li>
+            <li><code>app.js</code> - obsługa formularzy, almanachu i tabeli obserwacji.</li>
+            <li><code>calculations.js</code> - obliczenia astronawigacyjne.</li>
+            <li><code>data/almanac-data.js</code> - gotowy almanach offline.</li>
+            <li><code>tools/generate-almanac.py</code> - generator almanachu.</li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>
