@@ -102,8 +102,14 @@
   }
 
   function getDipMinutes(eyeHeightMeters) {
-    const height = Math.max(Number(eyeHeightMeters) || 0, 0);
+    const heightNumber = Number(eyeHeightMeters);
+    const height = Math.max(Number.isFinite(heightNumber) ? heightNumber : 0, 0);
     return 1.76 * Math.sqrt(height);
+  }
+
+  function getFiniteNumber(value, fallback) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : fallback;
   }
 
   function correctObservedAltitude(observation, deadReckoning) {
@@ -123,10 +129,11 @@
       ? 0
       : getDipMinutes(deadReckoning.eyeHeight);
 
+    const ha = altitude - dipMinutes / 60;
     const refractionMinutes = getRefractionMinutes(
-      altitude,
-      Number(deadReckoning.temperature) || 10,
-      Number(deadReckoning.pressure) || 1010
+      ha,
+      getFiniteNumber(deadReckoning.temperature, 10),
+      getFiniteNumber(deadReckoning.pressure, 1010)
     );
 
     const sdMinutes = parseArcMinutes(observation.sd);
@@ -142,10 +149,9 @@
       limbCorrectionMinutes = -sdMinutes;
     }
 
-    const parallaxMinutes = hpMinutes * Math.cos(degToRad(altitude));
+    const parallaxMinutes = hpMinutes * Math.cos(degToRad(ha));
 
-    return altitude
-      - dipMinutes / 60
+    return ha
       - refractionMinutes / 60
       + limbCorrectionMinutes / 60
       + parallaxMinutes / 60;

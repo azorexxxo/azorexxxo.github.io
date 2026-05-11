@@ -171,7 +171,11 @@ function updateMotionAvailability() {
 }
 
 function getNumberValue(selector, fallback = 0) {
-    const value = getInputValue(selector).replace(/,/g, ".");
+    const rawValue = getInputValue(selector);
+    if (!rawValue) {
+        return fallback;
+    }
+    const value = rawValue.replace(/,/g, ".");
     const number = Number(value);
     return Number.isFinite(number) ? number : fallback;
 }
@@ -220,8 +224,8 @@ function decimalToCoordinateParts(value, type) {
             lat: coordinatePartsToDecimal(elements.drLatDir?.value, elements.drLatDeg, elements.drLatMin, elements.drLatSec, 90),
             lon: coordinatePartsToDecimal(elements.drLonDir?.value, elements.drLonDeg, elements.drLonMin, elements.drLonSec, 180),
             eyeHeight: getNumberValue("#eye-height"),
-            temperature: getNumberValue("#temperature"),
-            pressure: getNumberValue("#pressure"),
+            temperature: getNumberValue("#temperature", 10),
+            pressure: getNumberValue("#pressure", 1010),
             indexError: getNumberValue("#index-error"),
             motion: {
                 enabled: Boolean(elements.vesselMotionEnabled?.checked),
@@ -358,7 +362,7 @@ function decimalToCoordinateParts(value, type) {
             const row1 = requireRow(findRowByTimestamp(sunMoonRows, timestamp1), timestamp1);
             const sdRow0 = requireRow(findDailyRow(sdRows, dateString), dateString);
             const hp = body === "Moon"
-  ? row0.moon_HP || row0["moon_HP"] || row0._values?.[7] || "0"
+  ? row0.moon_HP || row0._values?.[7] || "0"
   : "0";
 
 return {
@@ -398,7 +402,7 @@ if (body === "Venus" || body === "Mars") {
                 dec0: row0[`${prefix}_DECL`],
                 dec1: row1[`${prefix}_DECL`],
                 sha: "",
-                sd: "0",
+                sd: row0[`${prefix}_SD`] || "0",
                 hp: hp
             };
         }

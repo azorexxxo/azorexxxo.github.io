@@ -29,7 +29,7 @@
         <h2>Jak wykonać obliczenie pozycji</h2>
         <ol class="doc-steps">
             <li>Wpisz pozycję przybliżoną DR.</li>
-            <li>Uzupełnij wysokość oka, temperaturę, ciśnienie i błąd indeksu.</li>
+            <li>Uzupełnij wysokość oka, temperaturę, ciśnienie i poprawkę indeksu IC.</li>
             <li>Wybierz ciało niebieskie.</li>
             <li>Ustaw datę i czas UTC obserwacji.</li>
             <li>Kliknij <code>Wypełnij z almanachu</code>, aby uzupełnić GHA, deklinację, SHA, SD i HP.</li>
@@ -62,9 +62,10 @@ python3 tools/generate-almanac.py --start-year 2024 --end-year 2030</code></pre>
         <ul class="doc-list">
             <li><a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">NASA/JPL Horizons API</a></li>
             <li><a href="https://ssd.jpl.nasa.gov/api/horizons.api">Endpoint Horizons</a></li>
-            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/version_cd/cats/hip_main.dat.gz">Hipparcos Main Catalogue</a></li>
-            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe">Opis pól katalogu Hipparcos</a></li>
+            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/version_cd/cats/hip_main.dat.gz">Plik danych Hipparcos pobierany przez generator</a></li>
+            <li><a href="https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe">Dokumentacja katalogu Hipparcos, czyli opis kolumn i formatu pliku</a></li>
         </ul>
+        <p>Generator automatycznie pobiera tylko plik <code>hip_main.dat.gz</code>. Link <code>ReadMe</code> jest dokumentacją źródła danych i wyjaśnia, jak odczytywane są kolumny katalogu.</p>
     </section>
 
     <section class="doc-panel">
@@ -73,7 +74,7 @@ python3 tools/generate-almanac.py --start-year 2024 --end-year 2030</code></pre>
             <li>Słońce, Księżyc, Wenus, Mars, Jowisz i Saturn z NASA/JPL Horizons.</li>
             <li>57 gwiazd nawigacyjnych z katalogu Hipparcos.</li>
             <li>Dane godzinowe dla ciał Układu Słonecznego od <code>2024-01-01 00:00:00</code> do <code>2031-01-01 00:00:00</code>.</li>
-            <li>Dane dzienne dla gwiazd, SD i HP od <code>2024-01-01</code> do <code>2030-12-31</code>.</li>
+            <li>Dane dla gwiazd, SD i HP od <code>2024-01-01</code> do <code>2030-12-31</code>.</li>
         </ul>
         <p>Dodatkowy punkt <code>2031-01-01 00:00:00</code> jest potrzebny do interpolacji obserwacji wykonanych pod koniec 2030 roku.</p>
     </section>

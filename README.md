@@ -35,7 +35,7 @@ Dzięki temu po wygenerowaniu danych może działać offline.
 ## Jak używać aplikacji
 
 1. Wpisz pozycję przybliżoną DR.
-2. Wpisz dane środowiskowe, np. wysokość oka, temperaturę, ciśnienie i błąd indeksu.
+2. Wpisz dane środowiskowe, np. wysokość oka, temperaturę, ciśnienie i poprawkę indeksu IC.
 3. Wybierz ciało niebieskie.
 4. Ustaw datę i czas UTC.
 5. Kliknij `Wypełnij z almanachu`, aby aplikacja uzupełniła GHA, deklinację, SHA, SD i HP.
@@ -89,8 +89,10 @@ Almanach generowany jest na podstawie danych z następujących źródeł:
 
 - NASA/JPL Horizons API: https://ssd-api.jpl.nasa.gov/doc/horizons.html
 - Endpoint Horizons: https://ssd.jpl.nasa.gov/api/horizons.api
-- Hipparcos Main Catalogue, CDS Strasbourg: https://cdsarc.cds.unistra.fr/ftp/I/239/version_cd/cats/hip_main.dat.gz
-- Opis pól katalogu Hipparcos: https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe
+- Plik danych Hipparcos pobierany przez generator: https://cdsarc.cds.unistra.fr/ftp/I/239/version_cd/cats/hip_main.dat.gz
+- Dokumentacja katalogu Hipparcos, czyli opis kolumn i formatu pliku: https://cdsarc.cds.unistra.fr/ftp/I/239/ReadMe
+
+Generator automatycznie pobiera tylko plik `hip_main.dat.gz`. Link `ReadMe` jest potrzebny jako dokumentacja źródła danych i wyjaśnienie, które kolumny katalogu są używane.
 
 ## Zakres danych
 
@@ -99,7 +101,7 @@ Generator pobiera i przelicza:
 - Słońce, Księżyc, Wenus, Mars, Jowisz i Saturn z NASA/JPL Horizons.
 - 57 gwiazd nawigacyjnych z katalogu Hipparcos.
 - Dane godzinowe dla ciał Układu Słonecznego od `2024-01-01 00:00:00` do `2031-01-01 00:00:00`.
-- Dane dzienne dla gwiazd, SD i HP od `2024-01-01` do `2030-12-31`.
+- Dane dla gwiazd, SD i HP od `2024-01-01` do `2030-12-31`.
 
 Dodatkowy punkt `2031-01-01 00:00:00` jest potrzebny do interpolacji obserwacji wykonanych pod koniec 2030 roku.
 

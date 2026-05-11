@@ -276,9 +276,7 @@ def iter_days(start_year: int, end_year: int) -> list[datetime]:
     return days
 
 
-def horizons_time(year: int, stop: bool = False) -> str:
-    if stop:
-        return f"{year}-Jan-01 00:00"
+def horizons_time(year: int) -> str:
     return f"{year}-Jan-01 00:00"
 
 
@@ -314,7 +312,7 @@ def fetch_horizons_body_year(body: str, year: int, force_download: bool) -> str:
         "EPHEM_TYPE": "'OBSERVER'",
         "CENTER": "'500@399'",
         "START_TIME": f"'{horizons_time(year)}'",
-        "STOP_TIME": f"'{horizons_time(year + 1, stop=True)}'",
+        "STOP_TIME": f"'{horizons_time(year + 1)}'",
         "STEP_SIZE": "'1 h'",
         "QUANTITIES": "'2,13,20'",
         "CSV_FORMAT": "'YES'",
@@ -448,6 +446,7 @@ def build_planets_csv(solar: dict[str, dict[str, HorizonsRow]]) -> str:
                 [
                     degrees_to_dm(gha_from_ra(body_row), wrap=True),
                     degrees_to_dm(body_row.dec_deg),
+                    arcminutes(semi_diameter_minutes(body_row)),
                 ]
             )
         rows.append(row)
@@ -458,12 +457,16 @@ def build_planets_csv(solar: dict[str, dict[str, HorizonsRow]]) -> str:
             "aries_GHA",
             "saturn_GHA",
             "saturn_DECL",
+            "saturn_SD",
             "jupiter_GHA",
             "jupiter_DECL",
+            "jupiter_SD",
             "mars_GHA",
             "mars_DECL",
+            "mars_SD",
             "venus_GHA",
             "venus_DECL",
+            "venus_SD",
         ],
         rows,
     )
