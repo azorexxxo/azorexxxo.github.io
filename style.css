@@ -89,7 +89,34 @@ h1 {
     box-shadow: 0 10px 24px rgba(244, 197, 66, 0.16);
 }
 .doc-hero {
-    padding-bottom: 34px;
+    padding: 28px 0 0;
+    border-bottom: 0;
+    background: transparent;
+}
+.doc-hero > div {
+    position: relative;
+    width: min(1420px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background:
+        linear-gradient(90deg, rgba(31, 122, 140, 0.22), transparent),
+        rgba(7, 17, 31, 0.86);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+}
+.doc-hero > div::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    border-top: 2px solid rgba(244, 197, 66, 0.34);
+}
+.doc-hero h1 {
+    max-width: none;
 }
 .doc-lead {
     max-width: 780px;
@@ -104,13 +131,17 @@ h1 {
     gap: 10px;
 }
 .doc-layout {
-    width: min(1080px, calc(100% - 32px));
+    width: min(1420px, calc(100% - 32px));
     margin: 28px auto 48px;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 18px;
+    align-items: stretch;
 }
 .doc-panel {
     position: relative;
+    flex: 1 1 420px;
+    min-width: 0;
     padding: 22px;
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -125,6 +156,15 @@ h1 {
     border-radius: 8px;
     pointer-events: none;
     border-top: 2px solid rgba(244, 197, 66, 0.28);
+}
+.doc-panel:nth-child(1),
+.doc-panel:nth-child(2),
+.doc-panel:nth-child(3),
+.doc-panel:nth-child(4) {
+    flex-basis: calc(50% - 9px);
+}
+.doc-panel:nth-child(n + 5) {
+    flex-basis: 100%;
 }
 .doc-panel p {
     margin: 0 0 12px;
@@ -498,6 +538,28 @@ tbody tr:last-child td {
 @media (max-width: 680px) {
     .app-header {
         padding-top: 30px;
+    }
+    .doc-hero {
+        padding-top: 18px;
+    }
+    .doc-hero > div,
+    .doc-layout {
+        width: min(100% - 20px, 1420px);
+    }
+    .doc-hero > div {
+        padding: 22px;
+        border-radius: 10px;
+    }
+    .doc-layout {
+        margin-top: 18px;
+    }
+    .doc-panel,
+    .doc-panel:nth-child(1),
+    .doc-panel:nth-child(2),
+    .doc-panel:nth-child(3),
+    .doc-panel:nth-child(4),
+    .doc-panel:nth-child(n + 5) {
+        flex-basis: 100%;
     }
     .app-layout {
         width: min(100% - 20px, 1420px);

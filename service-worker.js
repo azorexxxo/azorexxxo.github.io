@@ -1,4 +1,4 @@
-const CACHE_NAME = "astronawigacja-offline-v1";
+const CACHE_NAME = "astronawigacja-offline-v2";
 const APP_ASSETS = [
     "./",
     "./index.html",
