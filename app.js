@@ -43,6 +43,18 @@ function byId(id) {
     return document.querySelector(`#${id}`);
 }
 
+function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) {
+        return;
+    }
+
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").catch((error) => {
+            console.warn("Nie udało się uruchomić trybu offline.", error);
+        });
+    });
+}
+
 function getCurrentUtcDataTimeLocalValue() {
     const now = new Date();
     const year = now.getUTCFullYear();
@@ -893,6 +905,7 @@ function init() {
     setCurrentUtcDateTime();
     updateLimbAvailability();
     updateMotionAvailability();
+    registerServiceWorker();
     bindEvents();
     renderObservationsTable();
     renderSavedSessions();

@@ -54,6 +54,18 @@ data/almanac-data.js
 
 Ten plik zawiera dane almanachu na lata 2024-2030. Jeżeli plik znajduje się w repozytorium, aplikacja może działać także po otwarciu z GitHub Pages.
 
+## Tryb offline na telefonie
+
+Aplikacja ma dodany tryb PWA. Żeby używać jej offline na telefonie:
+
+1. Wejdź w link GitHub Pages, mając internet.
+2. Poczekaj, aż aplikacja w pełni się załaduje, szczególnie plik almanachu.
+3. Na iPhonie otwórz Safari, kliknij udostępnianie i wybierz `Do ekranu początkowego`.
+4. Na Androidzie otwórz Chrome, wejdź w menu i wybierz `Dodaj do ekranu głównego` albo `Zainstaluj aplikację`.
+5. Po zapisaniu aplikacji na ekranie telefonu można ją uruchomić bez internetu.
+
+Tryb offline działa po wejściu przez `https://`, np. GitHub Pages. Nie działa przy zwykłym otwarciu pliku `index.html` przez `file://`, bo przeglądarki nie uruchamiają wtedy service workera.
+
 ## Generator almanachu
 
 Generator znajduje się w pliku:
@@ -125,6 +137,9 @@ Najważniejsze pliki projektu:
 - `app.js` - obsługa formularzy, almanachu i tabeli obserwacji.
 - `calculations.js` - obliczenia astronawigacyjne.
 - `data/almanac-data.js` - gotowy almanach offline.
+- `service-worker.js` - zapis plików aplikacji do działania offline w przeglądarce.
+- `manifest.webmanifest` - konfiguracja instalacji aplikacji na telefonie.
+- `icons/app-icon.svg` - ikona aplikacji.
 - `tools/generate-almanac.py` - generator almanachu.
 - `data/range.properties` - informacja o zakresie wygenerowanych danych.
 

@@ -48,6 +48,18 @@
     </section>
 
     <section class="doc-panel">
+        <h2>Tryb offline na telefonie</h2>
+        <ol class="doc-steps">
+            <li>Wejdź w link GitHub Pages, mając internet.</li>
+            <li>Poczekaj, aż aplikacja w pełni się załaduje, szczególnie plik almanachu.</li>
+            <li>Na iPhonie otwórz Safari, kliknij udostępnianie i wybierz <code>Do ekranu początkowego</code>.</li>
+            <li>Na Androidzie otwórz Chrome, wejdź w menu i wybierz <code>Dodaj do ekranu głównego</code> albo <code>Zainstaluj aplikację</code>.</li>
+            <li>Po zapisaniu aplikacji na ekranie telefonu można ją uruchomić bez internetu.</li>
+        </ol>
+        <p>Tryb offline działa po wejściu przez <code>https://</code>, np. GitHub Pages. Nie działa przy zwykłym otwarciu pliku <code>index.html</code> przez <code>file://</code>, bo przeglądarki nie uruchamiają wtedy service workera.</p>
+    </section>
+
+    <section class="doc-panel">
         <h2>Generator almanachu</h2>
         <p>Generator uruchamia się ręcznie tylko wtedy, gdy trzeba przebudować dane almanachu, np. zmienić zakres lat albo pobrać dane od nowa.</p>
         <p>Komenda do wygenerowania almanachu 2024-2030:</p>
@@ -96,6 +108,9 @@ SD = średnica kątowa / 2</code></pre>
             <li><code>app.js</code> - obsługa formularzy, almanachu i tabeli obserwacji.</li>
             <li><code>calculations.js</code> - obliczenia astronawigacyjne.</li>
             <li><code>data/almanac-data.js</code> - gotowy almanach offline.</li>
+            <li><code>service-worker.js</code> - zapis plików aplikacji do działania offline w przeglądarce.</li>
+            <li><code>manifest.webmanifest</code> - konfiguracja instalacji aplikacji na telefonie.</li>
+            <li><code>icons/app-icon.svg</code> - ikona aplikacji.</li>
             <li><code>tools/generate-almanac.py</code> - generator almanachu.</li>
         </ul>
     </section>

@@ -1,0 +1,19 @@
+{
+  "name": "Aplikacja astronawigacyjna",
+  "short_name": "Astronawigacja",
+  "description": "Aplikacja do wyznaczania pozycji na podstawie obserwacji astronawigacyjnych.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
