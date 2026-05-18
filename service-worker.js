@@ -10,7 +10,10 @@ const APP_ASSETS = [
     "./instrukcja.html",
     "./README.md",
     "./manifest.webmanifest",
-    "./icons/app-icon.svg"
+    "./apple-touch-icon.png",
+    "./icons/app-icon.svg",
+    "./icons/app-icon-192.png",
+    "./icons/app-icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
